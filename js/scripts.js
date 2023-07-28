@@ -5,10 +5,10 @@ let pokemonList = [
 ];
 
 //list pokemon on page with their heights in parentheses
-for (let i = 0; i < pokemonList.length; i++) {
-    document.write('<p></p>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+pokemonList.forEach(function (pokemonList) {
+    document.write('<p></p>' + pokemonList.name + ' (height: ' + pokemonList.height + ')');
     //check the height to add extra note
-    if (pokemonList[i].height > 1.5) {
+    if (pokemonList.height > 1.5) {
         document.write(' - Wow, that\'s big!');
     }
-}
+})
