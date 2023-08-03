@@ -17,6 +17,11 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+    //for now, log the pokemon object in the console (will be changed later)
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
     //create a button with the pokemon's name on it
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');
@@ -26,6 +31,10 @@ let pokemonRepository = (function () {
         pokemonButton.classList.add('pokemon');
         listPokemon.appendChild(pokemonButton);
         pokemonList.appendChild(listPokemon);
+        //when pokemon button is clicked show its details (log name in console for now)
+        pokemonButton.addEventListener('click', function(event) {
+            showDetails(pokemon);
+        })
     }
 
     return {
