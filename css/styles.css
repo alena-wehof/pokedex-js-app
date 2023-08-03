@@ -42,6 +42,17 @@ h2 {
     margin: 0 auto;
 }
 
+.pokemon-list {
+    list-style-type: none;
+    padding: 0px;
+}
+
+button {
+    padding: 16px 32px;
+    margin: 4px 2px;
+    width: 200px;
+}
+
 .pokemon {
     background-color: var(--secondary-color);
 }
