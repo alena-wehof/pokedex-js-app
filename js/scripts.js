@@ -21,11 +21,13 @@ let pokemonRepository = (function () {
     };
 })();
 
-//list pokemon on page with their heights in parentheses
+//create a list of buttons so each pokemon's name is on its own button
 pokemonRepository.getAll().forEach(function (pokemon) {
-    document.write('<p></p>' + pokemon.name + ' (height: ' + pokemon.height + ')');
-    //check the height to add extra note
-    if (pokemon.height > 1.5) {
-        document.write(' - Wow, that\'s big!');
-    }
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listPokemon = document.createElement('li');
+    let pokemonButton = document.createElement('button');
+    pokemonButton.innerText = pokemon.name;
+    pokemonButton.classList.add('pokemon');
+    listPokemon.appendChild(pokemonButton);
+    pokemonList.appendChild(listPokemon);
 })
