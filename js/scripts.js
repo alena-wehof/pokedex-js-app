@@ -1,9 +1,6 @@
 let pokemonRepository = (function () {
-    let pokemonList = [
-        { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison']},
-        { name: 'Ivysaur', height: 1, types: ['grass', 'poison']},
-        { name: 'Venusaur', height: 2, types: ['grass', 'poison']},
-    ];
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     //add a pokemon object to the pokemonList
     function add(pokemon) {
@@ -37,14 +34,33 @@ let pokemonRepository = (function () {
         })
     }
 
+    //get the pokemon data and add them to the pokemonList
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+            });
+        })
+    }
+
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList
     };
 })();
 
-//create a list of pokemon buttons on the page
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+//load the pokemon data
+pokemonRepository.loadList().then(function() {
+    //create a list of pokemon buttons on the page
+    pokemonRepository.getAll().forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
 });
